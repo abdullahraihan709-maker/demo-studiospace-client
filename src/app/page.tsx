@@ -1,5 +1,6 @@
 import { CalendarRange, SearchX } from "lucide-react";
 import { BrandMark } from "@/components/layout/brand-mark";
+import { UserMenu } from "@/components/layout/user-menu";
 import { EmptyState } from "@/components/shared/empty-state";
 import { PriceTag } from "@/components/shared/price-tag";
 import { StatusBadge, type BookingStatus } from "@/components/shared/status-badge";
@@ -31,6 +32,14 @@ const swatches = [
 ];
 
 const statuses: BookingStatus[] = ["pending", "confirmed", "completed", "cancelled"];
+
+/** Shown only on this style-guide page; the real user comes from the session in Block 5. */
+const demoHost = {
+  id: "demo-host",
+  name: "Ayesha Rahman",
+  email: "ayesha@studiospace.dev",
+  isHost: true,
+};
 
 export default function DesignSystemPreview() {
   return (
@@ -135,6 +144,22 @@ export default function DesignSystemPreview() {
               </div>
             </CardContent>
           </Card>
+        </section>
+
+        <section aria-labelledby="account" className="mt-14">
+          <SectionHeading
+            id="account"
+            eyebrow="Navigation"
+            title="Account menu"
+            description="The dropdown is fully built; Block 5 wires it to a real BetterAuth session. Until then it is rendered here with a sample host."
+          />
+          <div className="mt-8 flex items-center justify-between gap-4 rounded-2xl border bg-card px-5 py-4">
+            <div>
+              <p className="text-sm font-medium">{demoHost.name}</p>
+              <p className="text-xs text-muted-foreground">{demoHost.email}</p>
+            </div>
+            <UserMenu user={demoHost} />
+          </div>
         </section>
 
         <section aria-labelledby="empty" className="mt-14">
