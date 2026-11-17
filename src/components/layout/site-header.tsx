@@ -7,6 +7,7 @@ import { ArrowUpRight, Menu } from "lucide-react";
 
 import { BrandMark } from "@/components/layout/brand-mark";
 import { NavAuthActions } from "@/components/layout/nav-auth-actions";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -90,6 +91,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <div className="hidden items-center gap-2 md:flex">
             <NavAuthActions />
+            <ThemeToggle />
           </div>
 
           {/* mobile trigger */}
@@ -140,9 +142,13 @@ export function SiteHeader() {
                 })}
               </nav>
 
-              <SheetFooter className="mt-auto border-t px-4 py-5">
+              <SheetFooter className="mt-auto gap-3 border-t px-4 py-5">
                 <div className="grid w-full gap-2">
                   <NavAuthActions orientation="stacked" />
+                </div>
+                <div className="flex items-center justify-between rounded-xl border px-3 py-2">
+                  <span className="text-sm font-medium">Appearance</span>
+                  <ThemeToggle />
                 </div>
               </SheetFooter>
             </SheetContent>
