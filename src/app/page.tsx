@@ -1,6 +1,7 @@
 import { CalendarRange, SearchX } from "lucide-react";
 import { BrandMark } from "@/components/layout/brand-mark";
 import { UserMenu } from "@/components/layout/user-menu";
+import { FeedbackDemo } from "@/components/dev/feedback-demo";
 import { EmptyState } from "@/components/shared/empty-state";
 import { PriceTag } from "@/components/shared/price-tag";
 import { StatusBadge, type BookingStatus } from "@/components/shared/status-badge";
@@ -160,6 +161,16 @@ export default function DesignSystemPreview() {
             </div>
             <UserMenu user={demoHost} />
           </div>
+        </section>
+
+        <section aria-labelledby="feedback" className="mt-14">
+          <SectionHeading
+            id="feedback"
+            eyebrow="Infrastructure"
+            title="Toasts & confirmation"
+            description="Sonner for transient feedback, a branded AlertDialog for anything destructive. window.alert and window.confirm are never used."
+          />
+          <FeedbackDemo />
         </section>
 
         <section aria-labelledby="empty" className="mt-14">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import { Check, Monitor, Moon, Sun } from "lucide-react";
 
@@ -19,18 +19,26 @@ const OPTIONS = [
   { value: "system", label: "System", icon: Monitor },
 ] as const;
 
+const noopSubscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 /**
  * Theme switcher.
  *
  * The button renders a fixed placeholder until the component has mounted:
  * the server cannot know the stored preference, so guessing the icon in
- * SSR would guarantee a hydration mismatch.
+ * SSR would guarantee a hydration mismatch. `useSyncExternalStore` is the
+ * hydration-safe way to ask "are we on the client yet?" — unlike a
+ * mount effect it never sets state during the commit phase.
  */
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(
+    noopSubscribe,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
 
   const isDark = resolvedTheme === "dark";
 

@@ -26,18 +26,18 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Close the mobile sheet whenever the route changes — otherwise it stays
-  // open over the page you just navigated to.
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
   // Only add the heavy blur/shrink treatment once the page has moved.
+  // The initial check is deferred to rAF so this effect never sets state
+  // synchronously during the commit phase (and so a reload halfway down a
+  // page still starts with the solid header).
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
+    const raf = requestAnimationFrame(onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
@@ -119,7 +119,11 @@ export function SiteHeader() {
                 </SheetDescription>
               </SheetHeader>
 
-              <nav aria-label="Mobile" className="flex flex-col gap-1 px-4 py-4">
+              <nav
+                aria-label="Mobile"
+                className="flex flex-col gap-1 px-4 py-4"
+                onClick={() => setOpen(false)}
+              >
                 {NAV_LINKS.map((link) => {
                   const active = isActivePath(pathname, link.href);
                   return (
@@ -143,7 +147,7 @@ export function SiteHeader() {
               </nav>
 
               <SheetFooter className="mt-auto gap-3 border-t px-4 py-5">
-                <div className="grid w-full gap-2">
+                <div className="grid w-full gap-2" onClick={() => setOpen(false)}>
                   <NavAuthActions orientation="stacked" />
                 </div>
                 <div className="flex items-center justify-between rounded-xl border px-3 py-2">
