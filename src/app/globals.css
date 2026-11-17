@@ -54,12 +54,13 @@
 
   /* ---- brand aliases (readable intent in markup) ---- */
   --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
   --color-brand-foreground: var(--brand-ink);
   --color-brand-soft: var(--brand-soft);
   --color-paper: var(--bg);
   --color-surface: var(--surface);
   --color-ink: var(--ink);
-  --color-ink-muted: var(--muted);
+  --color-ink-muted: var(--ink-muted);
   --color-line: var(--line);
 
   /* ---- radii ---- */
@@ -73,13 +74,18 @@
 }
 
 :root {
-  /* ---- Cinematic Editorial palette (light) ---- */
+  /* ---- Cinematic Editorial palette (light) ----
+     NOTE: the muted *ink* is deliberately called --ink-muted, not --muted.
+     shadcn already owns --muted for a surface tint, and letting the two
+     share a name silently turned every secondary label into near-white
+     text on cream. */
   --bg: #fbf7f2;
   --surface: #ffffff;
   --ink: #16130f;
-  --muted: #6e655c;
+  --ink-muted: #5f574e;
   --line: #e8e0d6;
   --brand: #e2571e;
+  --brand-strong: #b8410f;
   --brand-ink: #ffffff;
   --brand-soft: #fbeade;
 
@@ -94,14 +100,14 @@
   --primary-foreground: var(--brand-ink);
   --secondary: #f2ebe1;
   --secondary-foreground: #2d2822;
-  --muted: #f4eee5;
-  --muted-foreground: var(--muted);
+  --muted: #f2ebe1;
+  --muted-foreground: var(--ink-muted);
   --accent: #f7efe5;
   --accent-foreground: var(--ink);
   --destructive: #b3261e;
   --destructive-foreground: #ffffff;
   --border: var(--line);
-  --input: #ddd3c6;
+  --input: #d5c9b9;
   --ring: var(--brand);
 
   --chart-1: #e2571e;
@@ -135,9 +141,10 @@
   --bg: #0c0b0a;
   --surface: #14120f;
   --ink: #f5f1ea;
-  --muted: #a69c90;
-  --line: #26221d;
+  --ink-muted: #b3a99b;
+  --line: #2b2620;
   --brand: #ff7a45;
+  --brand-strong: #ff9a70;
   --brand-ink: #1a0d06;
   --brand-soft: #2b1a11;
 
@@ -153,13 +160,13 @@
   --secondary: #1d1916;
   --secondary-foreground: var(--ink);
   --muted: #1b1815;
-  --muted-foreground: var(--muted);
+  --muted-foreground: var(--ink-muted);
   --accent: #221e19;
   --accent-foreground: var(--ink);
   --destructive: #ff6b5e;
   --destructive-foreground: #1a0d06;
   --border: var(--line);
-  --input: #2f2922;
+  --input: #3a332b;
   --ring: var(--brand);
 
   --chart-1: #ff7a45;

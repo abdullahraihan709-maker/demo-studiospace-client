@@ -54,7 +54,7 @@ export function UserMenu({ user, onSignOut, className }: UserMenuProps) {
       >
         <Avatar size="sm" className="size-8">
           {user.image ? <AvatarImage src={user.image} alt="" /> : null}
-          <AvatarFallback className="bg-brand-soft text-xs font-semibold text-brand">
+          <AvatarFallback className="bg-brand-soft text-xs font-semibold text-brand-strong">
             {getInitials(user.name)}
           </AvatarFallback>
         </Avatar>
@@ -67,7 +67,7 @@ export function UserMenu({ user, onSignOut, className }: UserMenuProps) {
         <DropdownMenuLabel className="flex items-start gap-3 py-1.5">
           <Avatar size="sm">
             {user.image ? <AvatarImage src={user.image} alt="" /> : null}
-            <AvatarFallback className="bg-brand-soft text-[0.7rem] font-semibold text-brand">
+            <AvatarFallback className="bg-brand-soft text-[0.7rem] font-semibold text-brand-strong">
               {getInitials(user.name)}
             </AvatarFallback>
           </Avatar>

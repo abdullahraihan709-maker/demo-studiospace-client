@@ -45,9 +45,10 @@ const demoHost = {
 export default function DesignSystemPreview() {
   return (
     <main className="relative flex-1 overflow-hidden">
-      {/* atmosphere */}
+      {/* atmosphere — both layers are height-bounded so they can never
+          bleed into the footer on a short page */}
       <div className="spotlight pointer-events-none absolute inset-x-0 top-0 h-[520px]" />
-      <div className="blueprint-grid [mask-image:linear-gradient(to_bottom,black,transparent_70%)] pointer-events-none absolute inset-0 opacity-60" />
+      <div className="blueprint-grid [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none absolute inset-x-0 top-0 h-[680px] opacity-70" />
 
       <div className="section-shell relative py-20 md:py-28">
         <Badge variant="soft" className="mb-8 font-mono text-[0.7rem] tracking-widest uppercase">

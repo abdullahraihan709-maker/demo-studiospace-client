@@ -61,7 +61,7 @@ export function SiteFooter() {
                   <li key={`${column.title}-${link.href}-${link.label}`}>
                     <Link
                       href={link.href}
-                      className="text-sm text-foreground/80 transition-colors hover:text-brand"
+                      className="text-sm text-foreground/80 transition-colors hover:text-brand-strong"
                     >
                       {link.label}
                     </Link>
@@ -93,7 +93,7 @@ export function SiteFooter() {
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label={label}
-                  className="flex size-9 items-center justify-center rounded-full border text-muted-foreground transition-colors hover:border-brand hover:bg-brand-soft hover:text-brand focus-visible:ring-3 focus-visible:ring-ring/50"
+                  className="flex size-9 items-center justify-center rounded-full border text-muted-foreground transition-colors hover:border-brand hover:bg-brand-soft hover:text-brand-strong focus-visible:ring-3 focus-visible:ring-ring/50"
                 >
                   <Icon className="size-4" aria-hidden="true" />
                 </a>

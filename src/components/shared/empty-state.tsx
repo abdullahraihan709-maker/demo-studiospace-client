@@ -30,7 +30,7 @@ export function EmptyState({
     >
       {icon ? (
         <div
-          className="mb-5 flex size-14 items-center justify-center rounded-full bg-brand-soft text-brand [&_svg]:size-6"
+          className="mb-5 flex size-14 items-center justify-center rounded-full bg-brand-soft text-brand-strong [&_svg]:size-6"
           aria-hidden="true"
         >
           {icon}

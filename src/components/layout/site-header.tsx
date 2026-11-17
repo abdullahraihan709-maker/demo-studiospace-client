@@ -135,7 +135,7 @@ export function SiteHeader() {
                       className={cn(
                         "flex items-center justify-between rounded-xl px-3 py-3 text-base font-medium transition-colors",
                         active
-                          ? "bg-brand-soft text-brand"
+                          ? "bg-brand-soft text-brand-strong"
                           : "text-foreground hover:bg-muted",
                       )}
                     >
