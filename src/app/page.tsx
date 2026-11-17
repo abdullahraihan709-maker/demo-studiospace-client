@@ -1,4 +1,8 @@
+import { CalendarRange, SearchX } from "lucide-react";
 import { BrandMark } from "@/components/layout/brand-mark";
+import { EmptyState } from "@/components/shared/empty-state";
+import { PriceTag } from "@/components/shared/price-tag";
+import { StatusBadge, type BookingStatus } from "@/components/shared/status-badge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,12 +12,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { SectionHeading } from "@/components/ui/section-heading";
 import { Separator } from "@/components/ui/separator";
 
 /**
- * TEMPORARY page — a live proof of the design tokens, typography and brand
- * mark produced in Block 2. It is replaced by the real marketing home page
- * in Block 6 (commit C16).
+ * TEMPORARY page — a live proof of the design tokens, typography, brand
+ * mark and primitives produced in Block 2. It is replaced by the real
+ * marketing home page in Block 6 (commit C16).
  */
 
 const swatches = [
@@ -25,50 +30,50 @@ const swatches = [
   { name: "brand", token: "--brand", className: "bg-brand" },
 ];
 
+const statuses: BookingStatus[] = ["pending", "confirmed", "completed", "cancelled"];
+
 export default function DesignSystemPreview() {
   return (
     <main className="relative flex-1 overflow-hidden">
       {/* atmosphere */}
       <div className="spotlight pointer-events-none absolute inset-x-0 top-0 h-[520px]" />
-      <div className="blueprint-grid pointer-events-none absolute inset-0 opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent_70%)]" />
+      <div className="blueprint-grid [mask-image:linear-gradient(to_bottom,black,transparent_70%)] pointer-events-none absolute inset-0 opacity-60" />
 
       <div className="section-shell relative py-20 md:py-28">
-        <Badge variant="secondary" className="mb-8 font-mono text-[0.7rem] tracking-widest uppercase">
+        <Badge variant="soft" className="mb-8 font-mono text-[0.7rem] tracking-widest uppercase">
           Day 1 · Block 2 · design system
         </Badge>
 
         <BrandMark size="lg" className="mb-10" />
 
-        <h1 className="max-w-3xl text-4xl leading-[1.05] font-semibold md:text-6xl">
-          Rent the room where
-          <span className="text-brand"> the work happens.</span>
-        </h1>
-
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-          Daylight-flooded studios, sound-treated booths and production spaces
-          from independent hosts — booked by the hour, without the agency
-          markup.
-        </p>
+        <SectionHeading
+          as="h1"
+          size="hero"
+          eyebrow="Peer-to-peer studio marketplace"
+          title={
+            <>
+              Rent the room where
+              <span className="text-brand"> the work happens.</span>
+            </>
+          }
+          description="Daylight-flooded studios, sound-treated booths and production spaces from independent hosts — booked by the hour, without the agency markup."
+        />
 
         <div className="mt-9 flex flex-wrap items-center gap-3">
-          <Button size="lg" className="px-5">
-            Explore studios
-          </Button>
-          <Button size="lg" variant="outline" className="px-5">
+          <Button size="xl">Explore studios</Button>
+          <Button size="xl" variant="outline">
             List your space
           </Button>
-          <span className="price-label text-muted-foreground">
-            from $32<span className="text-xs"> / hour</span>
-          </span>
+          <Button size="xl" variant="soft">
+            How it works
+          </Button>
         </div>
 
         <Separator className="my-14" />
 
         <section aria-labelledby="tokens">
-          <h2 id="tokens" className="text-sm font-medium tracking-widest text-muted-foreground uppercase">
-            Palette
-          </h2>
-          <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          <SectionHeading id="tokens" eyebrow="Foundations" title="Palette" />
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
             {swatches.map((s) => (
               <div key={s.name} className="rounded-xl border bg-card p-3">
                 <div className={`h-12 w-full rounded-md border ${s.className}`} />
@@ -80,9 +85,9 @@ export default function DesignSystemPreview() {
         </section>
 
         <section aria-labelledby="type" className="mt-14 grid gap-6 md:grid-cols-2">
-          <Card>
+          <Card interactive>
             <CardHeader>
-              <CardTitle id="type">Typography</CardTitle>
+              <CardTitle id="type">Typography & price label</CardTitle>
               <CardDescription>
                 Bricolage Grotesque for display, Geist for body, JetBrains Mono
                 for prices and labels.
@@ -96,7 +101,7 @@ export default function DesignSystemPreview() {
                 Body copy sits on a warm paper background so long paragraphs
                 stay readable in both themes.
               </p>
-              <p className="price-label">$48.00 / hour · 4 hr minimum</p>
+              <PriceTag amount="48.00" unit="hour" size="lg" className="text-brand" />
             </CardContent>
           </Card>
 
@@ -108,17 +113,55 @@ export default function DesignSystemPreview() {
                 overrides needed.
               </CardDescription>
             </CardHeader>
-            <CardContent className="flex flex-wrap items-center gap-2">
-              <Button>Primary</Button>
-              <Button variant="secondary">Secondary</Button>
-              <Button variant="outline">Outline</Button>
-              <Button variant="ghost">Ghost</Button>
-              <Button variant="destructive">Delete</Button>
-              <Badge>New</Badge>
-              <Badge variant="secondary">Photography</Badge>
-              <Badge variant="outline">Podcast</Badge>
+            <CardContent className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2">
+                <Button>Primary</Button>
+                <Button variant="secondary">Secondary</Button>
+                <Button variant="outline">Outline</Button>
+                <Button variant="ghost">Ghost</Button>
+                <Button variant="soft">Soft</Button>
+                <Button variant="destructive">Delete</Button>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge>New</Badge>
+                <Badge variant="soft">Photography</Badge>
+                <Badge variant="secondary">Podcast</Badge>
+                <Badge variant="outline">Podcast</Badge>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                {statuses.map((s) => (
+                  <StatusBadge key={s} status={s} />
+                ))}
+              </div>
             </CardContent>
           </Card>
+        </section>
+
+        <section aria-labelledby="empty" className="mt-14">
+          <SectionHeading
+            id="empty"
+            eyebrow="States"
+            title="Empty state"
+            description="One shared panel keeps every empty screen on-brand and gives the user exactly one next step."
+          />
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <EmptyState
+              icon={<SearchX />}
+              title="No studios match those filters"
+              description="Try widening the price range or clearing the category filter."
+              action={
+                <Button variant="outline" size="sm">
+                  Clear filters
+                </Button>
+              }
+            />
+            <EmptyState
+              icon={<CalendarRange />}
+              title="No bookings yet"
+              description="Once you book a space it will appear here with its status and invoice."
+              action={<Button size="sm">Explore studios</Button>}
+            />
+          </div>
         </section>
       </div>
     </main>
